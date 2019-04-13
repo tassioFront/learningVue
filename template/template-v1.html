@@ -1,0 +1,16 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!--O Vue entrerpeta as propriedades do nosso tamplate em HTML que são geradas na instancia Vue. Observe que o acesso é feita de forma direta-->
+    <p> {{ titulo }}</p>
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", //slecionamento a tag html que queremos controlar com a propriedade el
+        data: { //propriedade data também é nativa do Vue e nela é possível acessar os atributos criados
+            titulo: "Usando Vue" //criando um atributo
+        }
+    })
+</script>
+
