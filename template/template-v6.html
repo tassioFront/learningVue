@@ -1,0 +1,22 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <hr> 
+    <!--Já para que Vue interprete código HTML, é necessário usar a diretiva v-html. O que dá mais segurança para o desenvolvedor, impedindo acesso de hackers direto ao código.-->
+    <p v-html='linkHTML'></p>
+
+    </div>
+
+<script>
+    new Vue ({
+        el: "#app", //slecionamento a tag html que queremos controlar com a propriedade el
+        data: { //propriedade data também é nativa do Vue e nela é possível acessar os atributos criados
+            titulo: "Usando Vue", //criando um atributo
+            linkHTML: "<a href='https://www.google.com.br'>Google</a>"
+        },
+        //outra propriedade nativa do Vue é a methods
+       
+    })
+</script>
+
+

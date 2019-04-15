@@ -1,0 +1,32 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!--O Vue entrerpeta as propriedades do nosso tamplate em HTML que são geradas na instancia Vue. Observe que o acesse é feito de forma direta-->
+    <p> {{ titulo }}</p>
+    
+    <!--Interpolando métodos-->
+    <p> {{ saudacao() }}</p>
+
+    <!--Para interpolar dados em propriedades HTML, é necessário o uso de diretivas.
+    Neste caso, usamos a v-bind (ou :), que pega o valor dentro do atributo na instancia Vue e interpreta paa a propriedade HTML-->
+    <a :href="link" :title="link">Google</a>
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", //slecionamento a tag html que queremos controlar com a propriedade el
+        data: { //propriedade data também é nativa do Vue e nela é possível acessar os atributos criados
+            titulo: "Usando Vue", //criando um atributo
+            link: "https://www.google.com.br/"
+        },
+        //outra propriedade nativa do Vue é a methods
+        methods: {
+            saudacao: function() {
+
+                return this.titulo //para o acesso, dentro da instancia Vue, de atributos criados usamos o prefixo this - que representa a instancia Vue.
+            }
+        }
+    })
+</script>
+
+
