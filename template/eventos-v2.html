@@ -1,0 +1,33 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p> {{ contador }}</p>
+    <button v-on:click="somar">Somar</button>
+    <!--Toda vez que um evento é disparado, cria por debaixo dos panos uma referencias com as informações do evento. Que pode ou não se chamado-->
+    <p v-on:mousemove="atualizaXY">Mouse {{ x }} e {{ y }}</p>
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            contador: 0,
+            x: 0,
+            y: 0,
+        },
+        methods: {
+            somar() {
+                this.contador++
+                //toda vez que o contador atualiza, devido o evento disparado escutado da diretiva on, a view atualiza com o novo valor do atributo
+            },
+            atualizaXY(event) { //por padrão, o JS cria uma refencia do evento disparado. Chamei de event
+                console.log(event);
+                this.x= event.clientX;
+                this.y= event.clientY;
+
+            }
+
+        }
+    })
+</script>
+

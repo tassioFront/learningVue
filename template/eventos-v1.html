@@ -1,0 +1,22 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p> {{ contador }}</p>
+    <button v-on:click="somar">Somar</button>
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            contador: 0
+        },
+        methods: {
+            somar() {
+                this.contador++
+                //toda vez que o contador atualiza, devido o evento disparado escutado da diretiva on, a view atualiza com o novo valor do atributo
+            }
+        }
+    })
+</script>
+

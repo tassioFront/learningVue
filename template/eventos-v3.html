@@ -1,0 +1,34 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p> {{ contador }}</p>
+    <button v-on:click="somar(5, $event)">Somar</button> <!--Vamos passar um valor na função somar. A palavra reservada $event é para referenciar o evento disparado-->
+    
+    <hr>
+    <p v-on:mousemove="atualizaXY">Mouse {{ x }} e {{ y }}</p>
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            contador: 0,
+            x: 0,
+            y: 0,
+        },
+        methods: {
+            somar(valor, event) {
+                console.log(event);
+                this.contador = valor; //ao passar um parametro, a função perde a referencia padrão do evento. Por isso a necessidade do $event como parametro na função na tag
+                },
+            atualizaXY(event) { //por padrão, o JS cria uma refencia do evento disparado. Chamei de event
+                console.log(event);
+                this.x= event.clientX;
+                this.y= event.clientY;
+
+            }
+
+        }
+    })
+</script>
+
