@@ -1,0 +1,45 @@
+<script src="https://unpkg.com/vue"></script>
+
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar2</button>
+    <p>{{ contador }} | {{ contador2 }}</p>
+    <p> Resultado Computed {{ resultado }} ||| Resultado Method {{ resultado1() }} </p> 
+</div>
+
+
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            contador: 0,
+            contador2: 0,
+        }, 
+        methods: {
+            aumentar() {
+                this.contador++
+            },
+            resultado1() {
+                console.log("METHODS: Sempre atualiza")
+                return this.contador >= 5 ? "Maior/Igual" : "menor"  
+                
+            }
+           
+        },
+
+        computed: {
+            resultado() {
+                console.log("COMPUTED: Apenas atualiza a pagina quando a propriedade ques está fora de computed é atualizada");
+                return this.contador >= 5 ? "Maior/Igual" : "menor"   
+            }
+        },
+            
+            
+
+        
+    })
+
+</script>
+

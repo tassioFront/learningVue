@@ -1,0 +1,51 @@
+<script src="https://unpkg.com/vue"></script>
+
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar2</button>
+    <p>{{ contador }} | {{ contador2 }}</p>
+    <p> Resultado Computed {{ resultado }} </p> 
+</div>
+
+
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            contador: 0,
+            contador2: 0,
+        }, 
+        //Watch monitora quando fazemos alguma alteração em uma propriedades determinada. Observe que por padrão ela cria duas referencia newValue e oldValue
+        watch: {
+            contador(newValue, oldValue) { 
+                
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000); 
+            }
+        },
+
+        methods: {
+            aumentar() {
+                this.contador++
+            },
+            
+           
+        },
+
+        computed: {
+            resultado() {
+          
+                return this.contador >= 5 ? "Maior/Igual" : "menor"   
+            }
+        },
+            
+            
+
+        
+    })
+
+</script>
+

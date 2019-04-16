@@ -1,0 +1,17 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p> {{ titulo }}</p>
+    <!--A partir da diretiva v-model é possível fazer um two-way-databiding entre a view e a instanca Vue-->
+    <input type="text" v-model="titulo">
+</div>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            titulo: "Usando Vue" 
+        }
+    })
+</script>
+
