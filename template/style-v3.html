@@ -1,0 +1,55 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+        <div class="caixa">
+            <div @click="aplicarC1 = !aplicarC1" class="demo" :class="estilo1"></div>
+            <div class="demo"></div>
+            <!--Exemplos de uso de class, tanto como propriedade Vue, Objeto e class direto. Observe que está tudo dentro de um array-->
+            <div class="demo" :class="[classCSS, { girar: ativarGirar}, 'borda']"></div>
+        </div>
+        <hr>
+        <!--O input controla a classCSS, devido a two-away-dataBiding-->
+        <input type="text" v-model="classCSS">
+</div>
+
+
+<style>
+
+    .caixa {display: flex; justify-content: space-around;}
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray; 
+    }
+    .girar {transform: rotate(45deg);}
+    .preencher {padding: 10px} /*Ative preencher pelo input*/
+    
+    .borda {
+        border: 2px solid black;
+    }
+
+    .c1 {background-color: red;}
+    .c2 {background-color: green;}
+    .c3 {background-color: blue;}
+
+</style>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            aplicarC1: false,
+            classCSS: "c1", //atribuindo a class c1 para a propriedade classCSS. O usuário pode controlar a class pelo input, já que este está cpm v-model
+            ativarGirar: true
+
+        },
+        computed: {
+            estilo1 () {
+                return {
+                    c1: this.aplicarC1, //aqui retornamos a class c1 e c2 com os valores (booleanos) de aplicar c1. Deixando dinamico a interação da class
+                    c2: !this.aplicarC1
+                }
+            }
+        }
+    })
+</script>
