@@ -8,8 +8,8 @@
             <div class="demo" :class="[classCSS, { girar: ativarGirar}, 'borda']"></div>
         </div>
         <hr>
-        <!--O input controla a classCSS, devido a two-away-dataBiding-->
-        <input type="text" v-model="classCSS">
+        <!--O input controla a classCSS, mandando o dado da view para a data-->
+        <input type="text" v-on:input="classCSS = $event.target.value">
 </div>
 
 
@@ -22,7 +22,7 @@
         background-color: gray; 
     }
     .girar {transform: rotate(45deg);}
-    .preencher {padding: 10px} /*Ative preencher pelo input*/
+    .preencher {padding: 10px; transition: padding 0.5s;} /*Ative preencher pelo input*/
     
     .borda {
         border: 2px solid black;
@@ -39,7 +39,7 @@
         el: "#app", 
         data: { 
             aplicarC1: false,
-            classCSS: "c1", //atribuindo a class c1 para a propriedade classCSS. O usuário pode controlar a class pelo input, já que este está cpm v-model
+            classCSS: "c1", //atribuindo a class c1 para a propriedade classCSS. O usuário pode controlar a class pelo input, já que este está com v-on:input
             ativarGirar: true
 
         },
