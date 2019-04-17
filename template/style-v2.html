@@ -1,0 +1,40 @@
+<script src="http://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+        <div @click="aplicarC1 = !aplicarC1" class="demo" :class="estilo1"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+</div>
+
+
+<style>
+
+    #app {display: flex; justify-content: space-around;}
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray; 
+    }
+    .c1 {background-color: red;}
+    .c2 {background-color: green;}
+    .c3 {background-color: blue;}
+
+</style>
+
+<script>
+    new Vue ({
+        el: "#app", 
+        data: { 
+            aplicarC1: false 
+        },
+        computed: {
+            estilo1 () {
+                return {
+                    c1: this.aplicarC1, //aqui retornamos a class c1 e c2 com os valores (booleanos) de aplicar c1. Deixando dinamico a interação da class
+                    c2: !this.aplicarC1
+                }
+            }
+        }
+    })
+</script>
