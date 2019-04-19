@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!--v-for faz renderização de um Array, altomaticamente. Só precisando respeitar a sintaxe 'nickname in PropriedadeArray'-->
+        <!--O segundo parametro é o index do array-->
+        <li v-for='(cor, index) in cores' :key='cor' > {{ index }} - {{ cor }}</li>
+        <!--Observe aqui a importancia da key. Em listas Irenderização de várias tags html),
+         o vue tem melho desempenho para localizar um certo elemento caso nós dermos uma "dica" pra ele.
+        Essa dica é atribuida a propriedade key e é usada um valor do próprio atrito. Neste caso estamos usando a cor, mas o ideal seria um ID, por exempplo-->
+    </ul>
+
+    <hr>
+
+</div>
+
+<Script>
+
+    new Vue ({
+        el: '#app',
+        data: {
+        
+            cores: ['red', 'green', 'blue', 'yellow'],
+            pessoas: [
+                {nome: 'Ana', idade:'29', peso: '59'},
+                {nome: 'Tássio', idade:'24', peso: '60'}
+            ]
+
+        }
+        
+    })
+
+</Script>

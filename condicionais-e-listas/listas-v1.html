@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!--v-for faz renderização de um Array, altomaticamente. Só precisando respeitar a sintaxe 'nickname in PropriedadeArray'-->
+        <li v-for='cor in cores'> {{ cor }}</li>
+    </ul>
+</div>
+
+<Script>
+
+    new Vue ({
+        el: '#app',
+        data: {
+            cores: ['Vermelho', 'verde', 'azul', 'amarelo'],
+            pessoas: [
+                {nome: 'Ana', idade:'29', peso: '59'},
+                {nome: 'Tássio', idade:'24', peso: '60'}
+            ]
+
+        }
+        
+    })
+
+</Script>

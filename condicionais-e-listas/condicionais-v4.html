@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!--É possive optar por não renderizar a tag pai, através da tag template. Ela renderizar os filhos da tag-->
+    <template v-if='logado'> 
+        <p > Usuário logado = {{ nome }}</p>
+        <p>Perfil = admin</p>
+    </template>
+    <p v-else-if="anonimo">Navegando como anonimo</p>
+    <p v-else> Usuário não está logado</p>
+    <button @click = 'logado = !logado'>{{ logado ? 'Sair' : 'Entrar' }}</button>
+    <input type="checkbox" v-model='anonimo'> <!--Observe como é simples alterar o valor de uma propriedade por input-->
+
+    <hr>
+
+    <footer>
+
+    </footer>
+        <p v-show='logado'>Aparece pra quem tá logado </p>
+    <footer v-show='!logado'>
+            <p>Aparece pra quem NÃO tá logado </p>
+    </footer>
+    
+</div>
+
+<Script>
+
+    new Vue ({
+        el: '#app',
+        data: {
+            nome: 'Tássio',
+            logado: 'false',
+            anonimo: 'true'
+        }
+        
+    })
+
+</Script>

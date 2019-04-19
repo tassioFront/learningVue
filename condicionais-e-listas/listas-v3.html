@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!--v-for faz renderização de um Array, altomaticamente. Só precisando respeitar a sintaxe 'nickname in PropriedadeArray'-->
+        <!--O segundo parametro é o index do array-->
+        <li v-for='(cor, index) in cores' v-model='corIndex = cor' :style='{color: corIndex}' > {{ index }} - {{ cor }}</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li v-for='pessoa in pessoas'>
+            <div v-for='(valor, key, index) in pessoa'>
+                <!--v-for(valorAtribuido, atributoObjeto, index)-->
+                {{index}} - {{key}} = {{valor}}            
+            </div>
+        </li>
+    </ul>
+
+    <!--for literal com contador-->
+    <span v-for='n in 10'> {{ n }}</span>
+
+</div>
+
+<Script>
+
+    new Vue ({
+        el: '#app',
+        data: {
+            corIndex: '',
+            cores: ['red', 'green', 'blue', 'yellow'],
+            pessoas: [
+                {nome: 'Ana', idade:'29', peso: '59'},
+                {nome: 'Tássio', idade:'24', peso: '60'}
+            ]
+
+        }
+        
+    })
+
+</Script>

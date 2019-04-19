@@ -4,8 +4,10 @@
 
 <div id="app">
     <p v-if='logado'> Usuário logado = {{ nome }}</p>
+    <p v-else-if="anonimo">Navegando como anonimo</p>
     <p v-else> Usuário não está logado</p>
     <button @click = 'logado = !logado'>{{ logado ? 'Sair' : 'Entrar' }}</button>
+    <input type="checkbox" v-model='anonimo'> <!--Observe como é simples alterar o valor de uma propriedade por input-->
 </div>
 
 <Script>
@@ -14,7 +16,8 @@
         el: '#app',
         data: {
             nome: 'Tássio',
-            logado: 'false'
+            logado: 'false',
+            anonimo: 'true'
         }
         
     })
