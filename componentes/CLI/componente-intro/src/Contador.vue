@@ -4,18 +4,21 @@
 /*Agora, vamos criar um componente que será usado em outros locais da nossa aplicação.
 Pra isso acontecer, precisamos dá um export default, conforme foi visto a baixo. 
 
-Depois disso, é preciso entrar no arquivo main.js e importar o file Contador.vue e lá, dá um nome a tag através do comando que verá a seguir
+Vamos simbolizar um uso local e global de componentes, então vamos importar Contador localmente em Contadores.Vue. E depois colocaremos Contadores globalmente.
 
-para importar:
 
-import Contador from './Contador.vue'
+
+
+para importar Globalmente:
+
+import Contadores from './Contadores.vue'
 
 para criar a tag:
 
 Vue.componente('nomeDoComponente', NomeDoArquivo.vue)
 nomeDoComponente será o nome da tag personalizada
 
-NomeDoArquivo.Vue é o componente de origem, no caso Contador
+NomeDoArquivo.Vue é o componente de origem, no caso Contadores
 
 A partir destes comandos nosso componente estará disponível para ser acessado em qualquer template da aplicação
 

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <h1>Contador</h1>
-    <app-contador></app-contador> <!-- tag personalizada criada em Contador.vue-->
+      <app-contadores></app-contadores> <!-- tag personalizada criada em main.js-->
   </div>
 </template>
 
