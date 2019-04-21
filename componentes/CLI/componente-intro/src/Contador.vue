@@ -4,11 +4,13 @@
 /*Agora, vamos criar um componente que será usado em outros locais da nossa aplicação.
 Pra isso acontecer, precisamos dá um export default, conforme foi visto a baixo. 
 
-Depois disso, é preciso entrar no arquivo main.js e importar o file Contador.vue e lá, dá um nome a tag através do comando:
+Depois disso, é preciso entrar no arquivo main.js e importar o file Contador.vue e lá, dá um nome a tag através do comando que verá a seguir
 
 para importar:
 
 import Contador from './Contador.vue'
+
+para criar a tag:
 
 Vue.componente('nomeDoComponente', NomeDoArquivo.vue)
 nomeDoComponente será o nome da tag personalizada
@@ -54,7 +56,7 @@ export default {
 <style>
 
 .contador span {
-    border-bottom: 1px dolid #CCC;
+    border-bottom: 1px solid #CCC;
     height: 30px;
     padding: 5px 25px;
 }
