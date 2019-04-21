@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!--Observe que com o uso do template, cada componente criado (chamado de contador).
+    Cada componente criado tem uma dependencia Vue particular, o que permite o controle individual de cada componente. Sem que um interfira na execução do outro.
+    -->
+    <contador></contador>
+    <contador></contador>
+</div>
+
+<script>
+        //registro global, significa que toda Vue instance criada neste escopo terá acesso a esse componente
+    Vue.component('contador', {
+        template: `
+
+            <div>
+                <span> {{ contador }}</span>
+                <button @click='contador++'>+</button>
+                <button @click='contador--'>-</button>
+            </div>
+
+        `,
+        data()  {
+            return {
+                contador: 0
+            }
+        }
+    
+    })
+
+    new Vue ({
+        el: '#app',
+    })
+
+</script>

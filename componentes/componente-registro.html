@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app1">
+    <contador1></contador1>
+    <contador1></contador1>
+</div>
+<hr>
+<div id="app2">
+    <contador2></contador2>
+    <contador2></contador2>
+</div>
+    
+<script>
+    //registro global, significa que toda Vue instance criada neste escopo terá acesso a esse componente
+    const contador = {
+        template: `
+
+            <div>
+                <span> {{ contador }}</span>
+                <button @click='contador++'>+</button>
+                <button @click='contador--'>-</button>
+            </div>
+
+        `,
+        data()  {
+            return {
+                contador: 0
+            }
+        }
+    
+    }
+
+    new Vue ({
+        el: '#app1',
+        //registro local de um comonente. Só o nó associado a app1 tem acesso ao componente contador1
+        components: {
+            contador1: contador
+        }
+    })
+
+    new Vue ({
+        el: '#app2',
+        //registro local de um comonente. Só o nó associado a app2 tem acesso ao componente contador2
+        components: {
+
+        contador2: contador
+        }
+    })
+
+</script>
