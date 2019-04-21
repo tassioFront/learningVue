@@ -1,0 +1,55 @@
+<meta charser="UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+/*entendendo melhor o ciclo de instancia Vue
+
+Ao criar uma instancia, o Vue gerar diversas funções nativas do frameworks que agem em diferentes momentos da vida instancia.
+essas funções podem ser usadas pelo programador e todas começam com $
+
+veja imagem lifecycle.png para ver todas a funções e onde operam no ciclo de vida
+
+*/
+</script>
+
+<div id="app">
+    <h1> {{ titulo }} </h1>
+    <button @click='titulo += "#"'> Altera título</button>
+    <button @click='$destroy()'> Destruir </button>
+
+</div>
+
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            titulo: "Instancia Vue"
+        },
+        //métodos nativos do ciclo de vida. Observe que ficam na posição de propriedades
+        beforeCreated() {
+            console.log('Antes de criar a instancia')
+        },
+        created() {
+            console.log('Instancia criada')
+        },
+        beforeMount() {
+            console.log('Antes de montar o template na DOM')
+        },
+        mounted() {
+            console.log('Template montado na DOM')
+        },
+        beforeUpdate() {
+            console.log('Antes de atualizar')
+        },
+        updated() {
+            console.log("Atualizado")
+        },
+        beforeDestroy() {
+            console.log('Antes de destruir a Instancia')
+        },
+        destroyed() {
+            console.log('Instancia destruida') 
+        }
+
+    })
+</script>

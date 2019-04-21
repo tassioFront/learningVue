@@ -1,0 +1,35 @@
+<script src="https://unpkg.com/vue">
+/*Vamos usar o template dentro da instancia Vue.
+Aqui ele joga dentro da tag atrelada a instancia 'el*/
+</script>
+
+<div id="app">
+    
+</div>
+
+<script>
+    const vm = new Vue ({
+        el:'#app',
+        template: `
+            <div>
+                <h1> {{ aula }}</h1>
+                <h2> {{ modulo }} </h2>
+                <button @click = 'alterarAula'> Altera Aula</button>
+                <button @click = 'alterarModulo'> Altera Modulo</button>
+            </div>
+        `,
+        data: {
+            aula:'Sobre instancia Vue',
+            modulo: 'Vue'
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '@';
+            },
+            alterarModulo() {
+                this.modulo += '$'
+            }
+        }
+        //mv.$mount(#app) outra possibilidade para atrelar a instância Vue a html
+    })
+</script>

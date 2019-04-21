@@ -1,0 +1,39 @@
+<script src="https://unpkg.com/vue">
+/* Vamos usar a propriedade reservada ref.
+Ela serve para guardar a referencia de um nó html.
+Quando adicionamos ref a tag html, devemos atribuir um name a propriedade ref (vide case below, onde ref recebe 'aulaRef')
+Mais tarde, para acessar/alterar o conteúdo do nó, usaremos o name que foi atruido diretamente a propriedade
+*/
+</script>
+
+<div id="app">
+    <h1 ref="aulaRef"> {{ aula }}</h1>
+    <h2> {{ modulo }} </h2>
+    <button @click = 'alterarAula'> Altera Aula</button>
+    <button @click = 'alterarModulo'> Altera Modulo</button>
+
+</div>
+
+<script>
+    const vm = new Vue ({
+        el:'#app',
+        data: {
+            aula:'Sobre refs',
+            modulo: 'Vue'
+        },
+        methods: {
+            alterarAula() {
+                this.aula = '@';
+            },
+            alterarModulo() {
+                this.modulo = '$'
+            }
+        }
+
+    })
+
+    //acessando a ref
+    console.log(vm.$refs);
+    console.log(vm.$refs.aulaRef);
+    console.log(vm.$refs.aulaRef.innerText = "Alterando conteúdo dentro da tag");
+</script>

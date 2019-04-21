@@ -1,0 +1,27 @@
+.p {
+    min-width: in;
+}
+
+<html>
+        <svg width="200" height="200">
+                <rect width="100%" height="100%" fill="#0000ff" />
+                <circle cx="50%" cy="50%" r="90" fill="#00ff00"/>
+                <polygon points="100,10 180,140 20,140" fill="ff00ff"/>
+                </svg>
+    <Script>
+        var leVariable = "Ctrl+Z";
+    (function () {
+    console.log(leVariable);
+    var leVariable = "Ctrl+Alt+Del";
+    }());
+    
+    
+    
+    var hello = ['d', 'c']
+    var sam = [...'hello']
+    var x = hello == sam;
+    var y = hello === sam;
+
+    console.log(x + y)
+    </Script>
+</html>

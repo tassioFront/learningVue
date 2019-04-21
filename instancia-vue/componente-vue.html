@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <comp></comp>
+    
+    <hr>
+
+    <comp></comp>
+</div>
+
+<script>
+    /*Uma vez instancia a Vue, temos acesso as suas propriedas internas.
+    A Vue.component nos dá a possibilidade de criar componentes particulares
+    Sintaxe:
+    Vue.component( 'nomeTagPersonalizada, propriedades da Vue)
+
+    note que quando chamada component, a propriedade data precisa ser incorportada a uma função que retorna o objeto do que tem dentro de data.
+    Isso garante que cada tag criada a partir de Vue tenha atributos independentes.
+    */
+    Vue.component( 'comp', {
+
+        template: `
+            <div>
+                <h1> {{ aula }}</h1>
+                <h2> {{ modulo }} </h2>
+                <button @click = 'alterarAula'> Altera Aula</button>
+                <button @click = 'alterarModulo'> Altera Modulo</button>
+            </div>
+        `,
+        data: function() {
+            return { aula:'Sobre instancia Vue',
+            modulo: 'Vue'}
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '@';
+            },
+            alterarModulo() {
+                this.modulo += '$'
+            }
+        }
+
+    })
+
+    //instancia Vue
+    const vm = new Vue ({
+        el:'#app',
+    })
+
+</script>
