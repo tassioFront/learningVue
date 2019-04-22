@@ -6,7 +6,11 @@ Pra isso acontecer, precisamos dá um export default, conforme foi visto a baixo
 
 Vamos simbolizar um uso local e global de componentes, então vamos importar Contador localmente em Contadores.Vue. E depois colocaremos Contadores globalmente.
 
+Para importar localmente em outro componente (faremos isso em Contadores)
 
+import Contador from './Contador.vue'
+
+components: {'app-contador': Contador} //{nomeDaTagPersonalizada: nomeComponenteOrigem}
 
 
 para importar Globalmente:
@@ -56,7 +60,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped> /* Deixando o estilo apenas dentro do componente*/
 
 .contador span {
     border-bottom: 1px solid #CCC;
