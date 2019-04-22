@@ -29,6 +29,9 @@ Observe que a propriedade criada recebe o valor por um v-bind(:). A partir da al
 export default {
     props: ['nomeUser'] //definindo a propriedade para ser usada na tag(componente) personalizada
     
+    //importante informar que as props podem ser trabalhadas no componente filho, de forma a poder altera-las. 
+    //Então, poderiamos, por exemplo, fazer uma função cujo propriedade nome fosse alterada aqui mesmo, no componente filho.
+    //exemplo a função de inverter nome : this.nomeUser.split('').reverse.join('')
 }
 </script>
 
