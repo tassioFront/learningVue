@@ -3,6 +3,7 @@
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
         <p> Nome é {{ nome }} </p>
+        <p> idade {{ idade }}</p>
         <button @click='alteraNome'> Altera Nome</button>
         <hr>
         <div class="componentes">
@@ -11,9 +12,12 @@
             <app-usuario-info
                 :nomeUser="nome" 
                 @mudaNome='nome = $event'
+                :idadeUser='idade'
                 :reiniciaFn = "reiniciarNome"
                  /> <!--Evento personalizado que foi criado em UsuarioInfo. Esse evento é chamado ao clicar no botão reiniciar que fica no componente filho-->
-            <app-usuario-editar />
+            <app-usuario-editar
+                :idadeUser='idade'/>
+                   <!--@idadeMudou='idade = $event'   comentei para usarmos o evento emitado ($emit) para barramento-->
         </div>
     </div>
 </template>
@@ -26,7 +30,8 @@ export default { //AppUsuarioInfo: AppUsuarioInfo
     components: { AppUsuarioInfo, AppUsuarioEditar },
     data() {
         return {
-            nome: "Pedro"
+            nome: "Pedro",
+            idade: 21
         }
     },
     methods: {

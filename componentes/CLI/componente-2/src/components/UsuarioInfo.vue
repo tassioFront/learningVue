@@ -28,12 +28,23 @@ Outra forma é usando uma callback, onde temos que criar uma props do tipo funct
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
         <p>Nome do user: <strong> {{ inverteNome() }}</strong></p> 
+        <p> Idade {{ idadeUser }}</p>
+
         <button @click='reiniciaNome' > Reiniciar Nome com '$emit'</button>
         <button @click='reiniciaFn()' > Reiniciar Nome (callback)  </button>
     </div>
 </template>
 
 <script>
+
+import barramento from '@/barramento'
+
+/*Com o barramento (event bus) trazendo uma instancia Vue. podemos usa-la pra transferencia de dados entre os componetnes filhos.
+
+No caso, barramento.js está recebendo, através de um $emit em UsuarioEditar, um evento de nome nomeMudou e o valor da idade. 
+Vamos usar uma função de lyfecicle Vue (created) e pedir para que observe o evente personalizado
+*/ 
+
 export default {
     props: {
         nomeUser: {
@@ -41,8 +52,9 @@ export default {
             //required: true, //com o required, é obrigatório o uso da propriedade ao chamar a tag personalizada
             default: 'Sem nome' //caso o user não por value
         },
-        reiniciaFn: Function //props do tipo function (callback). A função reiniciaFn está recebendo uma função como paramentro em Usuario.vue
-    
+        reiniciaFn: Function, //props do tipo function (callback). A função reiniciaFn está recebendo uma função como paramentro em Usuario.vue
+        idadeUser: {type: Number}
+
     }, //definindo a propriedade para ser usada na tag(componente) personalizada
     
     methods: {
@@ -63,6 +75,13 @@ export default {
             Para demonstrar, vá em Usuario.vue e veja a tag personalizada do componente UsuarioInfo
             */
         }
+    },
+    created() {
+        //veja que usamos a propriedade que está dentro da instância que está em barramento.js. E estamos tratando o valor recebido denrto da variável idade
+        barramento.quandoIdadeMudar(idadeRecebida => {
+            this.idadeUser = idadeRecebida
+        })
+
     }
     
     
