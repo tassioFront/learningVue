@@ -1,0 +1,38 @@
+<script src="https://unpkg.com/vue"></script>
+    <div id="emit-example-argument">
+        <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    </div>
+
+<script>
+
+    Vue.component('magic-eight-ball', {
+        data: function () {
+            return {
+            possibleAdvice: ['Yes', 'No', 'Maybe']
+            }
+        },
+        methods: {
+            giveAdvice: function () {
+            var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+            this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+            }
+        },
+        template: `
+            <button v-on:click="giveAdvice">
+            Click me for advice
+            </button>
+        `
+    })
+    
+    new Vue({
+        el: '#emit-example-argument',
+        methods: {
+            showAdvice: function (advice) {
+            alert(advice)
+            }
+        }
+    })
+
+ 
+
+</script>

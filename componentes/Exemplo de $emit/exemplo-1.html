@@ -1,0 +1,40 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="emit-example-simple">
+    <welcome-button @welcome="sayHi"></welcome-button>
+</div>
+
+<script>
+    /*$emit tem o papel de criar um evento personalizado
+    
+    Observe que no componente local criado (welcome-button), já criamos uma $emit, de nome welcome.
+    A sintaxe é $emit('nomeDoEventePersonalizado', params) *aqui não estamos passando parametros junto ao nome.
+
+    observe que acionamos o evento criado quando o usuário click o botão atrsavés do comando @click='$emit('welcome').
+    Então o botão é responsável por disparar o evento welcome.
+
+    Agora, com o evente personalizado criado, podemos usa-lo com um bind na tag personalizada criada. 
+    Observe que na div, colocamos @welcome, isso porque welcome agora é um evento assim como click, input e etc.
+    
+    */
+
+    Vue.component('welcome-button', {
+        template: `
+            <button @click="$emit('welcome')">
+            Click me to be welcomed
+            </button>
+        `
+    }),
+    
+    new Vue({
+            el: '#emit-example-simple',
+            methods: {
+                sayHi: function () {
+                alert('Hi!')
+                }
+            }
+    })
+
+ 
+
+</script>

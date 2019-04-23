@@ -28,7 +28,7 @@ Outra forma é usando uma callback, onde temos que criar uma props do tipo funct
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
         <p>Nome do user: <strong> {{ inverteNome() }}</strong></p> 
-        <button @click='reiniciaNome' > Reiniciar Nome </button>
+        <button @click='reiniciaNome' > Reiniciar Nome com '$emit'</button>
         <button @click='reiniciaFn()' > Reiniciar Nome (callback)  </button>
     </div>
 </template>
@@ -52,11 +52,12 @@ export default {
         reiniciaNome() {
             /* Esse methodo alterará uma propriedade  do componente filho (UsuarioInfo.vue), mas que alterará também a Usuario.vue.
             Para isso vamos usar o evento reservado $emit, que permite que façamos um evento personalizado e este seja chamado na tag personalizada */
-            this.nome = 'Pedro'
+            this.nome = 'Pedro' //alterando a propriedade que pertence ao pai
             this.$emit('mudaNome', this.nome)
 
             /*this.$emit ('nomeDoEventoPersonalizado', this.AtributoQueSeraPassadoComoParametro)
-            O primeiro paramentro é criado por nós, e esse nome será usado dentro da tag fazendo um @ para que Vue observe o evento
+            O primeiro paramentro é criado por nós, e esse nome será usado dentro da tag fazendo um @ para que Vue observe o evento. Então note que mudaNome agora é um evento como click, input e etc.
+            Podendo usar a escrita @mudaNome assim como @click
             O segundo parametro será armazenada dentro de $event e recebido pela tag personalizada.
 
             Para demonstrar, vá em Usuario.vue e veja a tag personalizada do componente UsuarioInfo
