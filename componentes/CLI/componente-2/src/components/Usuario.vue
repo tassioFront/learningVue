@@ -2,10 +2,15 @@
     <div class="container">
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
+        <p> Nome é {{ nome }} </p>
         <button @click='alteraNome'> Altera Nome</button>
         <hr>
         <div class="componentes">
-            <app-usuario-info :nomeUser="nome" />
+
+            <!--Aqui vamos fazer uma relação direta De componente pai para filho através de props-->            
+            <app-usuario-info
+                :nomeUser="nome" 
+                @mudaNome='nome = $event' /> <!--Evento personalizado que foi criado em UsuarioInfo. Esse evento é chamado ao clicar no botão reiniciar que fica no componente filho-->
             <app-usuario-editar />
         </div>
     </div>
@@ -15,7 +20,7 @@
 import AppUsuarioInfo from './UsuarioInfo'
 import AppUsuarioEditar from './UsuarioEditar'
 
-export default {
+export default { //AppUsuarioInfo: AppUsuarioInfo
     components: { AppUsuarioInfo, AppUsuarioEditar },
     data() {
         return {
