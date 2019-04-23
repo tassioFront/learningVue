@@ -10,7 +10,9 @@
             <!--Aqui vamos fazer uma relação direta De componente pai para filho através de props-->            
             <app-usuario-info
                 :nomeUser="nome" 
-                @mudaNome='nome = $event' /> <!--Evento personalizado que foi criado em UsuarioInfo. Esse evento é chamado ao clicar no botão reiniciar que fica no componente filho-->
+                @mudaNome='nome = $event'
+                :reiniciaFn = "reiniciarNome"
+                 /> <!--Evento personalizado que foi criado em UsuarioInfo. Esse evento é chamado ao clicar no botão reiniciar que fica no componente filho-->
             <app-usuario-editar />
         </div>
     </div>
@@ -30,6 +32,9 @@ export default { //AppUsuarioInfo: AppUsuarioInfo
     methods: {
         alteraNome() {
             this.nome ='Ana'
+        },
+        reiniciarNome() { //essa função será passada como parametro para a 
+            this.nome = 'Pedro'
         }
     }
 }

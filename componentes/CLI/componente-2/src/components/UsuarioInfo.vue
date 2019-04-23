@@ -16,7 +16,9 @@ Observe que a propriedade criada recebe o valor por um v-bind(:). A partir da al
 */
 
 /* Já a comunicação de filho pra pai deve ser feita através de eventos. De forma Indireta.
-Usaremos como exemplo o methods reiniciaNome
+Usaremos como exemplo o methods reiniciaNome.
+
+Outra forma é usando uma callback, onde temos que criar uma props do tipo function. Faremos a reiniciaFn
  */
 
 </script>
@@ -26,7 +28,8 @@ Usaremos como exemplo o methods reiniciaNome
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
         <p>Nome do user: <strong> {{ inverteNome() }}</strong></p> 
-        <button @click='reiniciaNome' > Reiniciar </button>
+        <button @click='reiniciaNome' > Reiniciar Nome </button>
+        <button @click='reiniciaFn()' > Reiniciar Nome (callback)  </button>
     </div>
 </template>
 
@@ -37,7 +40,8 @@ export default {
             type: String, //fazendo validação da propriedade com Vue. 
             //required: true, //com o required, é obrigatório o uso da propriedade ao chamar a tag personalizada
             default: 'Sem nome' //caso o user não por value
-        }
+        },
+        reiniciaFn: Function //props do tipo function (callback)
     
     }, //definindo a propriedade para ser usada na tag(componente) personalizada
     
