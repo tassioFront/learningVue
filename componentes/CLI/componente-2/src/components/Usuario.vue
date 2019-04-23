@@ -33,7 +33,7 @@ export default { //AppUsuarioInfo: AppUsuarioInfo
         alteraNome() {
             this.nome ='Ana'
         },
-        reiniciarNome() { //essa função será passada como parametro para a 
+        reiniciarNome() { //essa função será passada como parametro para a reiniciaFn 
             this.nome = 'Pedro'
         }
     }
