@@ -18,17 +18,15 @@ Observe que só o conteúdo da tag slot é renderizado.
 */
 
 
-export default {
-    
-
-}
+export default {}
 </script>
 
 <style scoped>
     .citacao {
-        border: 1px solid #DDD;
+        border: 5px solid #DDD;
         background-color: rgba(0, 0, 0, .1);
         padding: 25px;
         max-width: 450px;
+        margin-bottom: 10px;
     }
 </style>

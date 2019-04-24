@@ -41,7 +41,7 @@ export default {
     },
     computed: {
         indice() {
-            return Math.abs(this.numero % 3)
+            return Math.abs(this.numero % 3) //pegando valor de indice aleatório para randomizar qual citação aparece
         }
     }
 }
