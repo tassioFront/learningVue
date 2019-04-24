@@ -10,11 +10,18 @@
 </template>
 
 <script>
+import barramento from '@/barramento'
+
 export default {
     data() {
         return {
             usuario: null
         }
+    },
+    created() {
+        barramento.monstraUsuario( dataUser => {
+            this.usuario = dataUser;
+        } )
     }
 }
 </script>
