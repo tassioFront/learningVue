@@ -46,8 +46,15 @@ export default {
     computed: {
         indice() {
             return Math.abs(this.numero % 3) //pegando valor de indice aleatório para randomizar qual citação aparece
-        }
+        }    
+    },
+    activated() { 
+            console.log('Com keep-alive - activated')
+    }, 
+        deactivated() {
+            console.log('Com keep-alive - deactivated')
     }
+  
 }
 </script>
 
