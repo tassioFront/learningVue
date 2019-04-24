@@ -3,9 +3,9 @@ import Vue from 'vue'
 export default new Vue( {
     methods: {
         alterarIdade(idade) {
-            this.$emit('idadeMudou', idade)
+            this.$emit('idadeMudou', idade)//emit criando evento personalizado e passando idade como parametro
         },
-        quandoIdadeMudar(callback) {
+        quandoIdadeMudar(callback) { //depois que o evento idadeMudou é chamado, essa função é disparada. E recebe como parametro uma callback
             this.$on('idadeMudou', callback)
         }
     }
@@ -22,5 +22,5 @@ com a criação da barramento.js exportando Vue, podemos importar essa instancia
 
 Pra isso vamos importar
 
-import barrramento from @/barramento.js
+import barramento from @/barramento.js
 */

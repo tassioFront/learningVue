@@ -80,6 +80,7 @@ export default {
         //veja que usamos a propriedade que está dentro da instância que está em barramento.js. E estamos tratando o valor recebido denrto da variável idade
         barramento.quandoIdadeMudar(idadeRecebida => {
             this.idadeUser = idadeRecebida
+
         })
 
     }
