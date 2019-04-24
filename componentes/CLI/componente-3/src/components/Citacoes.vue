@@ -4,14 +4,25 @@
             <button @click="numero--">&lt;</button>
             <button @click="numero++">&gt;</button>
         </span>
-        {{ numero }} {{ indice }}
+        <citacao>  <!--tudo criado dentro citacao é mandado para Citacao.vue e colocado dentro da tag slot-->
+            <h1>  {{ citacoes[indice].autor }} </h1>
+            <p> {{ citacoes[indice].texto }} </p>
+            <h6> {{ citacoes[indice].fonte }} </h6>
+        </citacao>
+        
     </div>
 </template>
 
 <script>
+
+    import Citacao from './Citacao.vue'
+
 export default {
+    components: { 'citacao': Citacao},
+   
     data() {
         return {
+            
             numero: 0,
             citacoes: [{
                 fonte: 'Jornal do Empreendedor',
