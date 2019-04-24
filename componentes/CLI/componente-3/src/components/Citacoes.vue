@@ -1,13 +1,16 @@
 <template>
     <div class="citacoes">
+       
         <span>
             <button @click="numero--">&lt;</button>
             <button @click="numero++">&gt;</button>
         </span>
+       
         <citacao>  <!--tudo criado dentro citacao é mandado para Citacao.vue e colocado dentro da tag slot-->
-            <h1>  {{ citacoes[indice].autor }} </h1>
-            <p> {{ citacoes[indice].texto }} </p>
-            <h6> {{ citacoes[indice].fonte }} </h6>
+            <h1 slot='autor'>  {{ citacoes[indice].autor }} </h1>
+            <p slot='texto'> Citações: </p>
+            <p slot='texto'> {{ citacoes[indice].texto }} </p>
+            <h6 slot='fonte'> {{ citacoes[indice].fonte }} </h6>
         </citacao>
         
     </div>
@@ -37,6 +40,7 @@ export default {
                 texto: 'Vou contar até 3! 1, 2, 2...',
                 autor: 'Gustavo'
             }]
+
         }
     },
     computed: {

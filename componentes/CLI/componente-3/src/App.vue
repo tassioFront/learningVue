@@ -32,6 +32,7 @@ export default {
         font-size: 2rem;
         font-weight: 300;
         color: #FFF;
-        background-color: rgba(0, 0, 0, .5);
+		background-color: rgba(0, 0, 0, .5);
+		cursor: pointer;
     }
 </style>
