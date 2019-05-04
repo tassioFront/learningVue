@@ -3,6 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+//criando diretivas globalmente 
 Vue.directive('destaque', {
 	/*Cada diretiva tem 5 métodos de ciclo de vida, que já são gearados por Vue quando uma diretiva é instancia
 
@@ -11,18 +12,23 @@ Vue.directive('destaque', {
 	*/
 
 	bind(el, binding) {
-		//el vai manipular o elemento html que tiver a diretivar destaque (digitar v-NomeDaDiretiva na tag)
-		//el.style.backgroundColor = 'red'
 	
-		// com bindign também é possível passar valores para a diretiva
 
-		if (binding.arg === 'corFonte') {
+		if (binding.arg === 'corFonte') { //arg aqui se refere ao argumento passado no momento de dispardo da diretiva. Então se olhar no html, verá que lá existe a diretiva corFonte
 			el.style.color = binding.value
-		
+
 		} else {
 			el.style.background = binding.value //passando o valor que for passado para a diretiva (v-destaque='valor')
-
 		}
+
+	
+		let atraso = 0
+
+		if (binding.modifiers['atraso']) atraso = 3000
+
+		setInterval(() => {
+				el.style.border = binding.value
+		}, atraso);
 	}
 	
 })
