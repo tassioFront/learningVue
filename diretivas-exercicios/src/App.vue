@@ -13,15 +13,16 @@
 		
 		<hr>
 
-		<p v-destaque-local:corFonte="'blue'"> Alterando cor de fundo com diretiva personalizada que manipula o el </p>
+		<p v-destaque-local:corFonte.atraso="'blue'"> Alterando cor de fundo com diretiva personalizada que manipula o el </p>
 
-		<p v-destaque-local:borda.atraso="'3px solid pink'"> Adiciono uma borda depois de 3 segundos devido o modificador </p>
+		<p v-destaque-local:atraso.alternar="cor"> Adiciono uma borda depois de 3 segundos devido o modificador </p>
 		
 
 	</div>
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 export default {
 	
 	/*Cada diretiva tem 5 métodos de ciclo de vida, que já são gearados por Vue quando uma diretiva é instancia
@@ -32,35 +33,51 @@ export default {
 	//diretiva localmente
 	directives: {'destaque-local': {
 
-		bind(el, binding) {
-			//el vai manipular o elemento html que tiver a diretivar destaque (digitar v-NomeDaDiretiva na tag)
-			//el.style.backgroundColor = 'red'
-		
-			// com bindign também é possível passar valores para a diretiva
+			bind(el, binding) {
+				
+				let aplicarCor = cor => {
 
-			if (binding.arg === 'corFonte') { //arg aqui se refere ao argumento passado no momento de dispardo da diretiva. Então se olhar no html, verá que lá existe a diretiva corFonte
-				el.style.color = binding.value
+					if (binding.arg === 'corFonte') { 
+						el.style.color = cor
+					} else {
+						el.style.color = cor
+					}
+				}
+				
+							
+				let atraso = 0
+				if (binding.modifiers['atraso']) atraso = 3000 //verificando se tem o modifier atraso
 
-			} else {
-				el.style.background = binding.value //passando o valor que for passado para a diretiva (v-destaque='valor')
+				const cor1 = binding.value
+				const cor2 = 'black'
+				let corAtual = cor1
+
+				setInterval(() => {
+
+					if(binding.modifiers['alternar']) {
+
+						setTimeout(() => {
+							corAtual = corAtual === cor1 ? cor2 : cor1
+							aplicarCor(corAtual)
+						}, 1000)
+
+					} else {
+
+						aplicarCor(binding.value)
+
+					}
+
+				}, atraso);
+				
+				
+
 			}
-
-			//trabalhando com modificadores: Da mesma forma, quando criamos um, precisamos o js para identificar se existe ou não e o que fazer caso exista
-
-			let atraso = 0
-
-			//com podemos passar diversos modificadores, vue cria um array dele. Portanto, vamos verificar se dentro do array modifiers(criado por Vue) ha 'atraso'
-			if (binding.modifiers['atraso']) atraso = 3000
-
-			setInterval(() => {
-					el.style.border = binding.value
-			}, atraso);
 		}
-	}
 
 
 
 	},
+
 	data() {
 		return {
 			cor: 'green'
