@@ -1,12 +1,25 @@
 <template>
 	<div id="app">
 		<h1>Diretivas</h1>
+
+		<p v-destaque="'red'"> Alterando cor de fundo com diretiva personalizada que manipula o el </p>
+		<p v-destaque="cor"> Alterando cor de fundo com diretiva personalizada que manipula o el </p>
+
+		<hr>
+		<!--Anatomia das diretivas: vNomeDaDiretiva:argumentos.modificador1.modificador2="'valor'"-->
+		<p v-destaque:corFonte="'blue'"> Alterando cor de fundo com diretiva personalizada que manipula o el </p>
+		
+
 	</div>
 </template>
 
 <script>
 export default {
-	
+	data() {
+		return {
+			cor: 'green'
+		}
+	}
 }
 </script>
 
