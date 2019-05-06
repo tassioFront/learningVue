@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3> lista que vem de Frutas.vue</h3>
+        <h3> lista que vem de Frutas.vue, usando frutaMixin</h3>
         <ul>
             <li v-for="fruta in frutas" :key="fruta" > {{ fruta }}</li>
         </ul>
@@ -11,19 +11,11 @@
 </template>
 
 <script>
+import frutaMixin from './frutaMixin'
+
 export default {
-    data() {
-        return {
-            fruta: '',
-            frutas: ['laranja', 'melancia', 'abacaxi']
-        }
-    },
-    methods: {
-        add() {
-            this.frutas.push(this.fruta);
-            this.fruta = '';
-        }
-    }
+    //criando mixins
+    mixins: [frutaMixin]
 
 }
 </script>
