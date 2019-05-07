@@ -14,6 +14,9 @@ export default {
             this.frutas.push(this.fruta);
             this.fruta = '';
         }
+    },
+    created() {//método de ciclo de vida
+        console.log('Created - frutaMixin.js')
     }
 
 

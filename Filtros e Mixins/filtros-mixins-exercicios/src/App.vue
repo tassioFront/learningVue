@@ -97,6 +97,11 @@ export default {
 </script>
 
 <style>
+
+h3, p, li,input {
+	font-size: 16px;
+}
+
 #app {
 	font-family: 'Avenir', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -107,7 +112,4 @@ export default {
 	font-size: 2.5rem;
 }
 
-input {
-	font-size: 2rem;
-}
 </style>
