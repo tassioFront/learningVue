@@ -47,7 +47,9 @@
 
 		<b-button variant="primary" @click="exibir2 = !exibir2"> Mostrar</b-button>
 		
+		<!--Para que possíveis class css não influenciem na animação, coloquei :css='false'-->
 		<transition 
+			:css="false"
 			@before-enter="beforeEnter"
 			@enter="enter"
 			@after-enter="afterEnter"
