@@ -80,9 +80,22 @@ Saída:
 
 .slide-enter-active {
 	animation: slide-in 2s ease;
+	transition: opacity 2s;
+	/*BUG para animações e transições com tempos diferentes:
+	
+	Quando se trabalha com tempos diferentes (por exemplo, se no trasition fosse 6s), acontece um bug porque a transição continua depois que a animação acabou.
+	Para resolver isso, é necessário add na tag transition  o type="nomeDaTransicaoComMenoTempo"
+	Impedndo o bug
+
+	*/
 }
 
 .slide-leave-active {
 	animation: slide-out 2s ease;
+	transition: opacity 2s; 
+
+.slide-enter, .slide-leave-to {
+	opacity: 0; /*O elemento começa e termina com opacidade 0*/
 }
+
 </style>
