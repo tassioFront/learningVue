@@ -10,10 +10,23 @@
 			<b-alert variant='info' show v-if='exibir'>{{ msg }}</b-alert>	
 		</transition>	
 
+		<!-- BOM SABER: se adicionar a propriedade appear na tag transition, ele usará a transição associada a tag no momento que o componente for carregado-->
+		<!--Ficaria trnasition name="slide appear-->
 		<transition name="slide">
 			<b-alert variant='info' show v-if='exibir'>{{ msg }}</b-alert>	
 		</transition>
 
+		<hr>
+		<h3> Usando v-model e v-bind para alterar a transição</h3>
+
+		<b-select v-model="valorAnimacao" class="mb-4">
+			<option value="fade"> Fade</option>
+			<option value="slide"> Slide</option>
+		</b-select>
+
+		<transition :name="valorAnimacao">
+			<b-alert variant='info' show v-if='exibir'>{{ msg }}</b-alert>	
+		</transition>
 
 	</div>
 </template>
@@ -24,7 +37,8 @@ export default {
 	data() {
 		return {
 			msg: 'Fique de olho na transição',
-			exibir: false
+			exibir: false,
+			valorAnimacao: 'fade'
 		}
 	}
 
@@ -93,7 +107,7 @@ Saída:
 .slide-leave-active {
 	animation: slide-out 2s ease;
 	transition: opacity 2s; 
-
+}
 .slide-enter, .slide-leave-to {
 	opacity: 0; /*O elemento começa e termina com opacidade 0*/
 }
