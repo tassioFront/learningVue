@@ -28,6 +28,20 @@
 			<b-alert variant='info' show v-if='exibir'>{{ msg }}</b-alert>	
 		</transition>
 
+		<hr>
+		<h3> Transição entre elementos (observe que a transição é feita de forma harmoniosa, devido o mode e key)</h3>
+
+		<b-select v-model="valorAnimacao" class="mb-4">
+			<option value="fade"> Fade</option>
+			<option value="slide"> Slide</option>
+		</b-select>
+		<!--O mode define o sentido da animação. out-in = primeiro saí o elemento, depois entra o outro...in-out é o contrário-->
+		<transition :name="valorAnimacao" mode="out-in">
+			<b-alert variant='info' show v-if='exibir' key="informacao">{{ msg }}</b-alert>
+			<b-alert variant='warning' show v-else key='aviso'>{{ msg }}</b-alert>	
+		</transition>
+
+
 	</div>
 </template>
 
