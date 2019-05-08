@@ -41,7 +41,26 @@
 			<b-alert variant='warning' show v-else key='aviso'>{{ msg }}</b-alert>	
 		</transition>
 
+		<hr>
 
+		<h2> Métodos hooks, transições usando JS</h2>
+
+		<b-button variant="primary" @click="exibir2 = !exibir2"> Mostrar</b-button>
+		
+		<transition 
+			@before-enter="beforeEnter"
+			@enter="enter"
+			@after-enter="afterEnter"
+			@enter-cancelled="enterCancelled"
+
+			@before-leave="beforeLeave"
+			@leave="leave"
+			@after-leave="afterLeave"
+			@leave-cancelled="leaveCancelled"
+
+		>
+			<div v-if="exibir2"  class="caixa"></div>
+		</transition>
 	</div>
 </template>
 
@@ -52,7 +71,38 @@ export default {
 		return {
 			msg: 'Fique de olho na transição',
 			exibir: false,
-			valorAnimacao: 'fade'
+			valorAnimacao: 'fade',
+			exibir2: true
+		}
+	},
+	methods: {
+		// em quase todos os hooks de transição passamos el.
+		beforeEnter(el) {
+
+		},
+		enter(el, done) {
+			//para que Vue saiba que o hook enter (ou o leave) acabou, é necessário chamar o método done() (native from Vue)
+			done()
+		},
+		afteEnter(el) {
+
+		},
+		enterCancelled() {
+
+		},
+		beforeLeave(el) {
+
+		},
+		leave(el, done) {
+			//para que Vue saiba que o hook enter (ou o leave) acabou, é necessário chamar o método done() (native from Vue)
+		
+			done()
+		},
+		afteLeave(el) {
+
+		},
+		leaveCancelled() {
+
 		}
 	}
 
@@ -124,6 +174,15 @@ Saída:
 }
 .slide-enter, .slide-leave-to {
 	opacity: 0; /*O elemento começa e termina com opacidade 0*/
+}
+
+/*Trabalhando com Hooks*/
+
+.caixa {
+	height: 100px;
+	width: 300px;
+	background-color: lightcoral;
+	margin: 30px auto;
 }
 
 </style>
