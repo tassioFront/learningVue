@@ -63,20 +63,44 @@
 		>
 			<div v-if="exibir2"  class="caixa"></div>
 		</transition>
+
+		<hr>
+		<h3> Transição de componentes </h3>
+		<div class="mb-4">
+
+			<b-button class="mr-2" variant="primary" @click='componenteSelecionado="info"'> Info </b-button>
+			<b-button @click='componenteSelecionado="advertencia"'> Advertência </b-button>
+
+		</div>
+		
+		<transition name="fade" mode="out-in"> 
+
+			<component :is='componenteSelecionado'> </component>
+
+		</transition>
+
 	</div>
 </template>
 
 <script>
 import { setInterval, clearInterval } from 'timers';
 
+import alertaAdvertencia from './alertaAdvertencia.vue'
+import alertaInfo from './alertaInfo.vue'
+
 export default {
+	components: {
+		'advertencia': alertaAdvertencia,
+		'info': alertaInfo
+	},
 	data() {
 		return {
 			msg: 'Fique de olho na transição',
 			exibir: false,
 			valorAnimacao: 'fade',
 			exibir2: true,
-			larguraBase: 0
+			larguraBase: 0,
+			componenteSelecionado: 'info'
 		}
 	},
 	methods: {
