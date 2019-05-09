@@ -79,6 +79,19 @@
 
 		</transition>
 
+
+		<hr>
+		<h3> Trabalhando com trasition-group </h3>
+
+		<b-button @click='adicionarAluno' class="mb-4"> Add Aluno</b-button>
+		<b-list-group v-for="(aluno, index) in alunos" :key="aluno">
+
+			<b-list-group-item @dblclick="removerAluno(index)">
+
+				{{ aluno}}
+			</b-list-group-item>
+		</b-list-group>
+
 	</div>
 </template>
 
@@ -100,7 +113,8 @@ export default {
 			valorAnimacao: 'fade',
 			exibir2: true,
 			larguraBase: 0,
-			componenteSelecionado: 'info'
+			componenteSelecionado: 'info',
+			alunos: ['Roberto', 'Julia', 'Teresa', 'João']
 		}
 	},
 	methods: {
@@ -120,7 +134,6 @@ export default {
 			}, 20)
 
 		},
-
 		// em quase todos os hooks de transição passamos el.
 		beforeEnter(el) {
 			this.larguraBase = 0
@@ -151,6 +164,15 @@ export default {
 		// leaveCancelled() {
 
 		// }
+
+		//TRANSITION- GROUP (h3)
+		adicionarAluno() {
+			const s = Math.random().toString(36).substring(2) //esse método randomiza e devolve letras....
+			this.alunos.push(s)
+		},
+		removerAluno(index) {
+			this.alunos.splice(index, 1)
+		}
 	}
 
 }
