@@ -45,7 +45,7 @@
 
 		<h2> Métodos hooks, transições usando JS</h2>
 
-		<b-button variant="primary" @click="exibir2 = !exibir2"> Mostrar</b-button>
+		<b-button variant="primary" @click="exibir2 = !exibir2"> Alternar</b-button>
 		
 		<!--Para que possíveis class css não influenciem na animação, coloquei :css='false'-->
 		<transition 
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { setInterval, clearInterval } from 'timers';
 
 export default {
 	data() {
@@ -74,38 +75,58 @@ export default {
 			msg: 'Fique de olho na transição',
 			exibir: false,
 			valorAnimacao: 'fade',
-			exibir2: true
+			exibir2: true,
+			larguraBase: 0
 		}
 	},
 	methods: {
+		animar(el, done, negativoBoolean) {
+			
+			let contador = 1;
+			const temporizador = setInterval(() => {
+				let novaLargura = this.larguraBase + 
+				(negativoBoolean ? -contador * 10 : contador * 10)
+				el.style.width = `${novaLargura}px`
+				contador++
+
+				if(contador >30) {
+					clearInterval(temporizador)
+					done()
+				}
+			}, 20)
+
+		},
+
 		// em quase todos os hooks de transição passamos el.
 		beforeEnter(el) {
-
+			this.larguraBase = 0
+			el.style.width = `${this.larguraBase}px`
 		},
 		enter(el, done) {
 			//para que Vue saiba que o hook enter (ou o leave) acabou, é necessário chamar o método done() (native from Vue)
-			done()
+			this.animar(el, done, false)	
 		},
-		afteEnter(el) {
+		// afteEnter(el) {
 
-		},
-		enterCancelled() {
+		// },
+		// enterCancelled() {
 
-		},
+		// },
 		beforeLeave(el) {
-
+			this.larguraBase = 300
+			el.style.width = `${this.larguraBase}px`
 		},
 		leave(el, done) {
 			//para que Vue saiba que o hook enter (ou o leave) acabou, é necessário chamar o método done() (native from Vue)
-		
-			done()
-		},
-		afteLeave(el) {
+			this.animar(el, done, true)	
 
 		},
-		leaveCancelled() {
+		// afteLeave(el) {
 
-		}
+		// },
+		// leaveCancelled() {
+
+		// }
 	}
 
 }
