@@ -84,13 +84,15 @@
 		<h3> Trabalhando com trasition-group </h3>
 
 		<b-button @click='adicionarAluno' class="mb-4"> Add Aluno</b-button>
-		<b-list-group v-for="(aluno, index) in alunos" :key="aluno">
+		
+		
+		<transition-group name="slide" tag="div">
 
-			<b-list-group-item @dblclick="removerAluno(index)">
+			<b-list-group v-for="(aluno, index) in alunos" :key="aluno">
+				<b-list-group-item @dblclick="removerAluno(index)">{{ aluno}}</b-list-group-item>
+			</b-list-group>
 
-				{{ aluno}}
-			</b-list-group-item>
-		</b-list-group>
+		</transition-group>
 
 	</div>
 </template>
@@ -240,6 +242,8 @@ Saída:
 .slide-leave-active {
 	animation: slide-out 2s ease;
 	transition: opacity 2s; 
+	position: absolute;
+	width: 100%;
 }
 .slide-enter, .slide-leave-to {
 	opacity: 0; /*O elemento começa e termina com opacidade 0*/
@@ -253,5 +257,18 @@ Saída:
 	background-color: lightcoral;
 	margin: 30px auto;
 }
+
+
+/* na b-list-group, ocorre saída e entrada de itens com transição slide (class criada)
+Mas, como nossa list tem varios elementos, os elementos que nao estão sendo acionado tambpem precisam de alguma transição para melhorar a mudança da view
+
+A class abaixo vai interagir diretamente  em todos (os outros) elementos quando algum elemento da list for adicionado ou removido.
+
+Observe que não é necessário informar o tipo de transform da transition, pois Vue saberá a partir da transition que ocorreu no elemento disparado
+ */
+.slide-move {
+	transition: transform 1s; 
+}
+
 
 </style>
