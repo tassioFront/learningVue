@@ -7,9 +7,9 @@
                 <a>Inicio</a>
             </router-link>
             <router-link to='/usuario' tag='li' active-class='active'>
-                <a> Usuário</a>    
+                <a> Usuário 1</a>    
             </router-link>
-
+           
         </ul>
     </nav>
 </template>
