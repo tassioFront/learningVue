@@ -4,10 +4,10 @@
             <!-- active-class é um propriedade do vue-router, que identifica se a componente está ativo-->
             <!-- exact serve para que o Vue considere apenas o endereço com o /, e nada mais-->
             <router-link to='/' tag='li' active-class='active' exact>
-                <a>Inicio</a>
+                <a>Home</a>
             </router-link>
             <router-link to='/usuario' tag='li' active-class='active'>
-                <a> Usuário</a>    
+                <a> User</a>    
             </router-link>
            
         </ul>

@@ -1,17 +1,17 @@
 <template>
 	<div id="app">
 		<h1>Rotas com VueRouter</h1>
-		<Menu/>
+		<!-- O menu vai alternar de acordo com o componente ativio, graças ao vue router nomeado -->
+		<router-view name="menu" />
+		<router-view name="menuAlt"/>
 		<router-view />
 	</div>
 </template>
 
 <script>
-import Menu from './components/template/Menu'
+
 export default {
-	components: {
-		Menu
-	}
+
 	
 }
 </script>

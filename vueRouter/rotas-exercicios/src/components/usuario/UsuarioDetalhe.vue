@@ -3,7 +3,12 @@
         <h3> Usuário Detalhe</h3>
         <p> Usuário: {{ id }}</p>
         <router-link tag="button" primario 
-        :to='{ name: "editarUsuario", params: { id }}'> Editar</router-link>
+        :to="{ name: 'editarUsuario', params: { id }, 
+        query: {completo: true, lingua: 'pt' }}"
+        
+        > 
+        <!-- passando dados por query, observe que essas informações aparecerão na url. É possível acessar os dados no componente UsuarioEditar -->
+        Editar</router-link>
         <!-- ou apenas :to="`/usuatio/${id}/editar`" -->
         <!-- :to='`/usuario/${$route.params.id}/editar`' -->
     </div>

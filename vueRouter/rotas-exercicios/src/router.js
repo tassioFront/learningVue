@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Inicio from './components/Inicio' //importando os componentes que serão usados na rotas
 import Usuario from './components/usuario/Usuario' //importando os componentes que serão usados na rotas
+import Menu from './components/template/Menu'
+import MenuAlt from './components/template/MenuAlt'
 
 import UsuarioLista from './components/usuario/UsuarioLista'
 import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
@@ -16,10 +18,19 @@ export default new Router ({
     routes: [{
         name: 'inicio', //o bom de dar nome as rotas é que podemos usa-las para navegar. Veja no componente Usuario o exemplo de uso de rota a partir do name
         path: '/', //definindo o caminho da rota
-        component: Inicio //identificando o componente da rota
+        //component: Inicio //identificando o componente da rota
+        components: {
+            default: Inicio,
+            menu: Menu
+        }
     }, {
         path: '/usuario',//definindo o caminho da rota (o :id é sintaxe para adicionar parametros a router)
-        component: Usuario, //identificando o componente da rota
+        //component: Usuario, //identificando o componente da rota
+        components: {
+            default: Usuario,
+            menuAlt: MenuAlt
+        },
+
         props: true, //com essa propriedade = true, a router passará os parametros por props, permitindo o acesso aos dados
 
         //podemos também criar rotas aninhadas que tem como pai o componete princial
