@@ -16,6 +16,13 @@
 		<!-- Exercício 4 -->
 		<!-- Compartilhe a propriedade computada via mixin -->
 		<p>	Via mixin: {{ putVirgulaMixin }} </p>
+
+		<hr>
+
+		<ul >
+			<li v-for= "consume in arra" :key="consume.andar" :class="putAndar(consume.andar)" > {{ consume.nome }} {{ consume.andar }}</li>
+			
+		</ul>
 	</div>
 </template>
 
@@ -25,9 +32,27 @@ export default {
 	data() {
 		return {
 			palavra: 'Trocando os espaços vazios por vírgula',
-			palavra1: 'Tássio é Dev Vue'
+			palavra1: 'Tássio é Dev Vue',
+			arra: [
+				{nome: 'te', andar: 1}, {nome: 'ti', andar: 2}
+				
+			],
+			
+			
+			aplicarC1: false
 		}
 	},
+	methods: {
+		 putAndar(andar) {
+            andar == 1 ? this.aplicarC1 = true : this.aplicarC1 = false
+            return {
+                c1: this.aplicarC1, //aqui retornamos a class c1 e c2 com os valores (booleanos) de aplicar c1. Deixando dinamico a interação da class
+                c2: !this.aplicarC1
+            }
+        }
+	},
+
+
 	filters: {
 		putVirgula(valor) {
 			let arr = valor.split('')
@@ -59,4 +84,14 @@ export default {
 	margin-top: 60px;
 	font-size: 2.5rem;
 }
+
+.c1 {
+	background: green;
+	background-color: green;	
+	}
+
+.c2 {
+	background: coral;
+	background-color: coral;	
+	}
 </style>

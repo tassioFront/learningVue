@@ -13,34 +13,62 @@ Vue.use(Router) //registrando a Router
 
 export default new Router ({
     //mode: 'hash',
-   
     mode: 'history',
+    scrollBehavior(to, from, savedPosition){
+        /*Essa função irá definir se para onde a page será scrollada a partir do seletor informado em UsuarioDetalhe
+        a função recebe 3 parametros: to é a nagevação, então colocando to.hash (ele está indo para a hash declarada, no caso em UsuarioDetalhe)
+        from é origem
+        savedPosition é porque o navegador pode fazer um cache da posição do seletor e scrollar a page automaticamente até lá. 
+        */
+       if (savedPosition) {
+           return savedPosition //caso tiver um cache
+       } else if (to.hash) {
+           return {selector: to.hash} //caso não tiver o cash ,mas tem o seletor no hash
+       } else {
+           return {x: 0, y:0} //mantém a page no inicio
+       }
+    },
     routes: [{
-        name: 'inicio', //o bom de dar nome as rotas é que podemos usa-las para navegar. Veja no componente Usuario o exemplo de uso de rota a partir do name
-        path: '/', //definindo o caminho da rota
-        //component: Inicio //identificando o componente da rota
-        components: {
-            default: Inicio,
-            menu: Menu
+            name: 'inicio', //o bom de dar nome as rotas é que podemos usa-las para navegar. Veja no componente Usuario o exemplo de uso de rota a partir do name
+            path: '/', //definindo o caminho da rota
+            //component: Inicio //identificando o componente da rota
+            components: {
+                default: Inicio,
+                menu: Menu
+            }
+        }, {
+            path: '/usuario',//definindo o caminho da rota (o :id é sintaxe para adicionar parametros a router)
+            //component: Usuario, //identificando o componente da rota
+            components: {
+                default: Usuario,
+                menu: MenuAlt,
+                menuAlt: MenuAlt 
+            },
+
+            props: true, //com essa propriedade = true, a router passará os parametros por props, permitindo o acesso aos dados
+
+            //podemos também criar rotas aninhadas que tem como pai o componete princial
+            children: [
+                {path: '', component: UsuarioLista},
+                {path: ':id', component: UsuarioDetalhe, props: true },
+                {path: ':id/editar', component: UsuarioEditar, props: true,
+                    name: 'editarUsuario'}
+            ]
+        }, {
+            /*É possível redirencionar o usuário para um componente expecifico caso ele digite algo errado na barra de endereço do nagevador. 
+            Para isso temos que usar a propriedade redirect. Mostrarei dois exemplos abaixos
+
+            Isso é muito usado para redirecionar o usuário pro famoso erro 404, que é quando a URL não é encontrada no site        
+            */
+            path: '*', //aqui um caso genérico, qualquer URL que não exista que for digitada pelo user redirecionará o componente Inicio
+            redirect: '/'
+            
+        },{
+            path: '/redirecionar', //aqui um caso especifico, onde o user digita a rota redirecionar e Vue redirecionar a view para o componetne usuario
+            redirect: '/usuario'
+            
         }
-    }, {
-        path: '/usuario',//definindo o caminho da rota (o :id é sintaxe para adicionar parametros a router)
-        //component: Usuario, //identificando o componente da rota
-        components: {
-            default: Usuario,
-            menuAlt: MenuAlt
-        },
-
-        props: true, //com essa propriedade = true, a router passará os parametros por props, permitindo o acesso aos dados
-
-        //podemos também criar rotas aninhadas que tem como pai o componete princial
-        children: [
-            {path: '', component: UsuarioLista},
-            {path: ':id', component: UsuarioDetalhe, props: true },
-            {path: ':id/editar', component: UsuarioEditar, props: true,
-                name: 'editarUsuario'}
-        ]
-    }]
+    ]
 
 })
 

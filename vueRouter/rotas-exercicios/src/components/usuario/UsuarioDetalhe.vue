@@ -4,13 +4,29 @@
         <p> Usuário: {{ id }}</p>
         <router-link tag="button" primario 
         :to="{ name: 'editarUsuario', params: { id }, 
-        query: {completo: true, lingua: 'pt' }}"
+            query: {
+                completo: true, 
+                lingua: 'pt'
+            },
+            hash:'#rodape'      
+        }"
         
         > 
+            <!-- com o hash definido, vamos usar uma função nativa JS para scrollar a page para a hash definida.
+            Assim quando o usuário entrar na rota a page será escrolada até o seletor informado.
+            Essa função será criada em router         -->
+
+
+
+          
+                
         <!-- passando dados por query, observe que essas informações aparecerão na url. É possível acessar os dados no componente UsuarioEditar -->
         Editar</router-link>
         <!-- ou apenas :to="`/usuatio/${id}/editar`" -->
         <!-- :to='`/usuario/${$route.params.id}/editar`' -->
+
+
+        
     </div>
 </template>
 
@@ -47,5 +63,6 @@ export default {
 </script>
 
 <style>
+    
 
 </style>

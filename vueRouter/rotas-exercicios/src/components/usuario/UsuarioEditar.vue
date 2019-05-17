@@ -6,6 +6,10 @@
         <p>Completo : {{ $route.query.completo}}</p>
         <p>Lingua : {{ $route.query.lingua}}</p>
          
+         <!-- usando hash -->
+        <div id="rodape">
+            <h3>Curso Vue</h3>
+        </div>
 
     </div>
 </template>
@@ -18,5 +22,8 @@ export default {
 </script>
 
 <style>
+    #rodape {
+        margin-top: 1000px; /*Apenas para fins didáticos, para entender o hash*/
 
+    }
 </style>
