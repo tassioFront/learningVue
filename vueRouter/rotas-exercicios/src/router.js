@@ -1,15 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Inicio from './components/Inicio' //importando os componentes que serão usados na rotas
-import Usuario from './components/usuario/Usuario' //importando os componentes que serão usados na rotas
+// import Usuario from './components/usuario/Usuario' //importando os componentes que serão usados na rotas
 import Menu from './components/template/Menu'
 import MenuAlt from './components/template/MenuAlt'
 
-import UsuarioLista from './components/usuario/UsuarioLista'
-import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
-import UsuarioEditar from './components/usuario/UsuarioEditar'
+// import UsuarioLista from './components/usuario/UsuarioLista'
+// import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
+// import UsuarioEditar from './components/usuario/UsuarioEditar'
 
 Vue.use(Router) //registrando a Router
+
+/*Como carregar componentes de forma tardia (ideal para aplicações grandes) 
+Os componentes podem ser carregados um a um, tardiamente, ou em pacotes. Que são gerenciados pelo webpack,
+que interpreta isso a partir de um comentário dentro do import (webpackChunkName)
+
+Abrindo o console e indo na aba network, é possível ver que Vue faz um prefetch,
+ oq siginifica que ele faz uma requisição ao servidor apenas para verificar/confirmar a existência do(s) componente(s)
+*/
+const Usuario = () => import (/* webpackChunkName: "usuario" */ './components/usuario/Usuario')//criando pacote usuario
+const UsuarioLista = () => import (/* webpackChunkName: "usuario" */'./components/usuario/UsuarioLista')  //criando pacote usuario
+const UsuarioDetalhe = () => import ( './components/usuario/UsuarioDetalhe')
+const UsuarioEditar = () => import ( './components/usuario/UsuarioEditar')
+
+
 
 const router = new Router ({
     //mode: 'hash',
