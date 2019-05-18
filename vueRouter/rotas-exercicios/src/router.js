@@ -11,7 +11,7 @@ import UsuarioEditar from './components/usuario/UsuarioEditar'
 
 Vue.use(Router) //registrando a Router
 
-export default new Router ({
+const router = new Router ({
     //mode: 'hash',
     mode: 'history',
     scrollBehavior(to, from, savedPosition){
@@ -50,7 +50,12 @@ export default new Router ({
             //podemos também criar rotas aninhadas que tem como pai o componete princial
             children: [
                 {path: '', component: UsuarioLista},
-                {path: ':id', component: UsuarioDetalhe, props: true },
+                {path: ':id', component: UsuarioDetalhe, props: true,
+                    beforeEnter: (to, from, next) => {
+                        console.log('Antes da rota - UsuarioDetalhe')
+                        next()
+                    }
+                },
                 {path: ':id/editar', component: UsuarioEditar, props: true,
                     name: 'editarUsuario'}
             ]
@@ -70,6 +75,22 @@ export default new Router ({
         }
     ]
 
+})
+
+export default router
+
+/* Usando eventos inicialização de componentes. 
+Esportando toda a router globalmente, como fizemo acima. É possível declarar um evento padrão para todos os componentes,
+antes de iniciarem
+*/
+router.beforeEach((to, from, next) => {
+    /*Veja a função beforeEach, que inicia antes de cada router for carregada. Para que ocorre inicialização do componente,
+    é mandatório executar a função next  */
+    console.log('Antes da rota - global')
+    next()
+    //ainda no next é possível passa uma rota, objeto, ou boolean.
+    //next('./usuario')
+    //next(true)
 })
 
 /*mode hash e history

@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { nextTick } from 'q';
 export default {
     
     // data() {
@@ -58,6 +59,24 @@ export default {
     // },
     
     props: ['id'], //nome da priedade igual ao parametros passado em router.js
+
+    //usando os eventos que são disparado a partir das routas  dos componentes dentro do próprio componente
+    beforeRouteEnter(to, from, next) {
+        //por se tratar de um evento disparado antes do componente ser criado, não temos acesso as propriedades a como o this.id
+        console.log('dentro do componente - UsuarioDetalhe ')
+
+         //gambis pra acesssar props mesmo antes do componente estar iniciado
+        // next( vm => {
+        //     consolo.log(this.id)
+        // })
+
+
+        //uma forma de controlar o acesso de usuários não autenticados
+        const autenticado = true //se colocar false o componente nao será iniciado
+        autenticado == true ? next() : next(false)
+
+       
+    }
 
 }
 </script>
