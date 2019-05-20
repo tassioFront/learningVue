@@ -25,5 +25,13 @@ export default new Vuex.Store ({
      */
         state: { //agora, quando algum componente fizer alguma alteração/requisição em produtos, os outros componentes que dependem de produtos também serão atualizados.
             produtos: []
+        },
+        // Vamos usar outra proprieda, os getters. QUe nos permite acessar as informações dos dados centralizador e até altera-los antes de enviar para algum componnte
+        getters: {
+              valorTotal(state) { //observe que ele recebe por padrão o state
+                      return state.produtos.map(p => p.quantidade * p.preco)
+                        .reduce((total, atual) =>  total + atual, 0)
+              }  
         }
+
 })

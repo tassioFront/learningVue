@@ -29,8 +29,8 @@
 export default {
     computed: {
         total() {
-            return this.produtos.map(p => p.quantidade * p.preco)
-                .reduce((total, atual) => total + atual, 0)
+            //usando a função definidida na propriedade getters para ter acesso aos valores da store
+            return this.$store.getters.valorTotal
         },
         produtos () {
            return this.$store.state.produtos //acessando os dados que estão na store (gerenciada por Vuex)

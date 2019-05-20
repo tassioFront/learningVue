@@ -9,16 +9,26 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex' //importando o mapGetters
+
 export default {
-    computed: {
-        total() {
-            return this.produtos.map(p => p.quantidade * p.preco)
-                .reduce((total, atual) => total + atual, 0)
-        },
-        produtos () {
-           return this.$store.state.produtos //acessando os dados que estão na store (gerenciada por Vuex)
-        }
-    }
+/*Para acessar os valores, existem 3 maneiras de usar os getters, vou deixar duas comentadas e uma única funcionando
+*/
+    computed: mapGetters ({
+            total: 'valorTotal' //dessa forma preservamos o valor que está interpolado. Do contrário teriamos que alterar total por valorTotal
+    
+    })
+
+    // computed:  //usando mapGetters para deixar o código mais limpo (ele por de baixo dos panos faz como a opção definida abaixo)
+    //    (mapGetters: ['valorTotal']) // para usar dessa forma, será necessário alterar a propriedade ques está sendo interpolada no template acima
+    
+
+    // computed: { //acessando diretamento a função dentro da propriedade getters
+    //     total() {
+    //         //usando a função definidida na propriedade getters para ter acesso aos valores da store
+    //         return this.$store.getters.valorTotal
+    //     }
+    // }
 }
 </script>
 
