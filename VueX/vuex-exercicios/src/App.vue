@@ -57,5 +57,6 @@ button {
 	background-color: #FAFAFA;
 	outline: none;
 	border: none;
+	cursor: pointer;;
 }
 </style>
