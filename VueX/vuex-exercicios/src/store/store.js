@@ -32,6 +32,13 @@ export default new Vuex.Store ({
                       return state.produtos.map(p => p.quantidade * p.preco)
                         .reduce((total, atual) =>  total + atual, 0)
               }  
+        },
+        //trabalhando com mutations, que equivalem a setters, pois alteram os valores centralizados (estado centralizado)
+        mutations: {
+                adicionarProduto(state, produto) { //como padrão as funções dentro de mutations recebem state, e podem, alem deste, receber mais apenas um parametro (payLoad)
+                //portanto, não suporta mais de 2 parametros na função
+                        state.produtos.push(produto)
+                }
         }
 
 })

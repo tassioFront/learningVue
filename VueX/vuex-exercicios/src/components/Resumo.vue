@@ -14,7 +14,9 @@ import {mapGetters} from 'vuex' //importando o mapGetters
 export default {
 /*Para acessar os valores, existem 3 maneiras de usar os getters, vou deixar duas comentadas e uma única funcionando
 */
-    computed: mapGetters ({
+    computed: mapGetters ({ //lembrando que dessa forma só funciona porque só temos uma propriedade computada. Se tivessem mais, teriamos que: 
+    //...mapGetters({total: 'valorTotal}) //usar spread operator
+
             total: 'valorTotal' //dessa forma preservamos o valor que está interpolado. Do contrário teriamos que alterar total por valorTotal
     
     })

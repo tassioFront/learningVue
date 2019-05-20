@@ -26,12 +26,17 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex' //importando o mapGetters
+
 export default {
     computed: {
-        total() {
-            //usando a função definidida na propriedade getters para ter acesso aos valores da store
-            return this.$store.getters.valorTotal
-        },
+        ...mapGetters({ //usando spread para que as prop. computadas tenham acesso ao getter
+            total: 'valorTotal'  //atribuindo a função valorTotal (definida em store) a total
+        }),
+        // total() {
+        //     //usando a função definidida na propriedade getters para ter acesso aos valores da store
+        //     return this.$store.getters.valorTotal
+        // },
         produtos () {
            return this.$store.state.produtos //acessando os dados que estão na store (gerenciada por Vuex)
         }
