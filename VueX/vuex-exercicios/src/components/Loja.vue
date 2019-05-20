@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export default {
 
@@ -23,7 +23,8 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['adicionarProduto']), //observe que para usar mapMutations adicionamos em methods, diferente de getters que é computed
+        ...mapActions(['adicionarProdutoActions']),
+        //...mapMutations(['adicionarProduto']), //observe que para usar mapMutations adicionamos em methods, diferente de getters que é computed
         //é necessário usar o spread + o nome da função dentro de mutations que será usada aqui em methods, umas vez que temos mais de um método dentro de methods
         adicionar() {
             const produto = {
@@ -36,8 +37,13 @@ export default {
             
             // this.$store.state.produtos.push(produto) //como seria para auterar diretamento no estado
             //usando mutations, para alterar valores no eestado:
-            // this.$store.commit('adicionar', produto) //uma das formas
-            this.adicionarProduto(produto) //usando mapMutations
+            // this.$store.commit('adicionar', produto) //uma das formas, alterando direto na mutation
+            // this.adicionarProduto(produto) //usando mapMutations
+
+            //Usando actions como controlador do que é commitado
+            // this.$store.dispatch('adicionarProduto', produto)
+
+            this.adicionarProdutoActions(produto)
 
         }
     }

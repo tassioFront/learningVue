@@ -34,11 +34,29 @@ export default new Vuex.Store ({
               }  
         },
         //trabalhando com mutations, que equivalem a setters, pois alteram os valores centralizados (estado centralizado)
+
+        /*O único papel das mutations e de alterar (commit) as propriedades do estado. 
+        Isso significa que qualquer regra referente ao negócio, que sua execução alterar o estado, deve ser solicitado pelas actions. 
+        E essas (actions) por sí só enviam a solicitação para o mutations executar. 
+        
+        Então, no caso de uma alteração que tenha uma Promise, toda a aquicição e resultado da requisiçao a Promise é programado nas actions, que faz informa as mutationss
+      
+        O sentido é: componenteSolicitante -- dispach > Actions -- commit > Mutations -- alteração do Estado > Store 
+        */
         mutations: {
                 adicionarProduto(state, produto) { //como padrão as funções dentro de mutations recebem state, e podem, alem deste, receber mais apenas um parametro (payLoad)
                 //portanto, não suporta mais de 2 parametros na função
                         state.produtos.push(produto)
                 }
+        },
+        //criando actions para salvar as regras de negócio, aqui vamos simular uma sincronização assicroma usando setTimeOut
+        actions: {
+                adicionarProdutoActions(context, produto) {
+                        setTimeout(() => {
+                                context.commit('adicionarProduto', produto) //fazendo commit para pedir que mutations altere o estado
+                        }, 1000)
+                }
+                
         }
 
 })
