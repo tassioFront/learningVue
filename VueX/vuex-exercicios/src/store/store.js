@@ -24,7 +24,15 @@ export default new Vuex.Store ({
     em propriedades computadas temos uma função que exemplifica o o acesso aos dados dentro de state
      */
         state: { //agora, quando algum componente fizer alguma alteração/requisição em produtos, os outros componentes que dependem de produtos também serão atualizados.
-            produtos: []
+            produtos: [],
+
+           /*  Usando exemplo de v-model em diferentes componentes, que um alterando a store, atualiza o outro.
+            Vamos usar propriedades computados com métodos get e set, um recurso não tao usado mas que nesse caso se aplica. 
+                
+            Os métodos para editar essas propriedades estão em mutations*/
+
+                quantidade: 0, //usaremos essas duas propriedades em Parametros e em Loja
+                preco: 0
         },
         // Vamos usar outra proprieda, os getters. QUe nos permite acessar as informações dos dados centralizador e até altera-los antes de enviar para algum componnte
         getters: {
@@ -47,7 +55,16 @@ export default new Vuex.Store ({
                 adicionarProduto(state, produto) { //como padrão as funções dentro de mutations recebem state, e podem, alem deste, receber mais apenas um parametro (payLoad)
                 //portanto, não suporta mais de 2 parametros na função
                         state.produtos.push(produto)
+                },
+
+                //Os próximos métodos são para exemplificar o uso do v-model em diferentes componetnes
+                setQuantidade(state, payload) {
+                        state.quantidade = payload //receberá o valor que vier do componente
+                },
+                setPreco(state, payload) {
+                        state.preco = payload
                 }
+
         },
         //criando actions para salvar as regras de negócio, aqui vamos simular uma sincronização assicroma usando setTimeOut
         actions: {

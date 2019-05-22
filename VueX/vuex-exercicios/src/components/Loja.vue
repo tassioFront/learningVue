@@ -18,8 +18,7 @@ export default {
     data() {
         return {
             sequencia: 1,
-            quantidade: 1,
-            preco: 9.99,
+          
         }
     },
     methods: {
@@ -45,6 +44,17 @@ export default {
 
             this.adicionarProdutoActions(produto)
 
+        }
+    },
+    computed: {
+        /*Continuando exemplo de v-model em componentes diferentes
+        Veja que aqui vamos usar a computed apenas para receber o valor
+        */
+        quantidade() {
+            return this.$store.state.quantidade
+        },
+        preco() {
+            return this.$store.state.preco
         }
     }
 }
